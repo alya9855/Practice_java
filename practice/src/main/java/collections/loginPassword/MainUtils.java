@@ -12,16 +12,14 @@ public class MainUtils {
                         "3- Verify if the user exists\n" +
                         "4- Change the login of the existing user\n" +
                         "5- Change the password of the existing user\n" +
-                        "6- Finish!"
+                        "6- Finish!\n" +
+                        "7 - Print into console"
         );
         Scanner scan = new Scanner(System.in);
         int number = scan.nextInt();
         ///   do {
         action(number);
         //       } while(number != 6);
-        for (User users1 : users) {
-            System.out.print(users1 + " ");
-        }
     }
 
     public static void action(int number) {
@@ -42,8 +40,16 @@ public class MainUtils {
             System.out.println("please enter new password");
         } else if (number == 6) {
             System.out.println("Finish!");
+        } else if (number == 7) {
+            print();
         } else {
             System.out.println("Please select number from 1-5");
+        }
+    }
+
+    public static void print(){
+        for (User user : users) {
+            System.out.print(user + " ");
         }
     }
 
