@@ -1,10 +1,13 @@
 package collections.loginPassword;
 
 import java.util.Scanner;
+
 import static collections.loginPassword.Main.users;
 
 public class MainUtils {
-    public static void start(){
+    public static void start() {
+        int number;
+        do {
         System.out.println(
                 "Please enter number according to the action:\n" +
                         "1- Add new user\n" +
@@ -16,38 +19,46 @@ public class MainUtils {
                         "7 - Print into console"
         );
         Scanner scan = new Scanner(System.in);
-        int number = scan.nextInt();
-        ///   do {
+        number = scan.nextInt();
         action(number);
-        //       } while(number != 6);
+         } while(number != 6);
     }
 
     public static void action(int number) {
-        if (number == 1) {
-            System.out.println("Please enter login and password for new User");
-            addUser();
-        } else if (number == 2) {
-            System.out.println("Please delete user from existing"); //  id
-            deleteUser();
-        } else if (number == 3) {
-            System.out.println("Please enter login");
-            existUser();
-        } else if (number == 4) {
-            System.out.println("Please select user");
-            changeLogin();
-        } else if (number == 5) {
-            System.out.println("Please select user");
-            System.out.println("please enter new password");
-        } else if (number == 6) {
-            System.out.println("Finish!");
-        } else if (number == 7) {
-            print();
-        } else {
-            System.out.println("Please select number from 1-5");
+        switch (number) {
+            case 1:
+                System.out.println("Please enter login and password for new User");
+                addUser();
+                break;
+            case 2:
+                System.out.println("Please delete user from existing"); //  id
+                deleteUser();
+                break;
+            case 3:
+                System.out.println("Please enter login");
+                existUser();
+                break;
+            case 4:
+                System.out.println("Please select user");
+                changeLogin();
+                break;
+            case 5:
+                System.out.println("Please select user");
+                System.out.println("please enter new password");
+                changePassword();
+                break;
+            case 6:
+                System.out.println("Finish!");
+                break;
+            case 7:
+                print();
+            default:
+                System.out.println("Please select number from 1-7");
+                break;
         }
     }
 
-    public static void print(){
+    public static void print() {
         for (User user : users) {
             System.out.print(user + " ");
         }
@@ -79,12 +90,11 @@ public class MainUtils {
 
     public static void deleteUser() {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Add user id");
+        System.out.println("Enter id");
         int id = scan.nextInt();
-
         for (User user : users) {
             if (user.getUserNumber() == id) {
-                users.remove(user);
+                users.remove(user.getUserNumber());
             } else {
                 System.out.println("There is no users in DB");
             }
