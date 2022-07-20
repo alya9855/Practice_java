@@ -3,8 +3,6 @@ package collections.webService;
 public class Request {
     String clientName;
     int priority;
-    // server is one?
-    // time, how do we get?
 
     public Request(String clientName, int priority) {
         this.clientName = clientName;
@@ -32,6 +30,6 @@ public class Request {
         return "Request{" +
                 "clientName='" + clientName + '\'' +
                 ", priority=" + priority +
-                '}';
+                '}' + "\n";
     }
 }

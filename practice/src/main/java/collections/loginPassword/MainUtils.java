@@ -1,5 +1,6 @@
 package collections.loginPassword;
 
+import java.util.Iterator;
 import java.util.Scanner;
 
 import static collections.loginPassword.Main.users;
@@ -39,7 +40,6 @@ public class MainUtils {
                 existUser();
                 break;
             case 4:
-                System.out.println("Please select user");
                 changeLogin();
                 break;
             case 5:
@@ -82,26 +82,27 @@ public class MainUtils {
         for (User user : users) {
             if (user.getUser().equals(login)) {
                 System.out.println("The user exists in DB");
-            } else {
-                System.out.println("There is no users in DB");
             }
         }
+                System.out.println("There is no users in DB"); // think -  3 times print
     }
 
     public static void deleteUser() {
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter id");
         int id = scan.nextInt();
-        for (User user : users) {
-            if (user.getUserNumber() == id) {
-                users.remove(user.getUserNumber());
-            } else {
-                System.out.println("There is no users in DB");
+        Iterator<User> userIterator = users.iterator();
+        while(userIterator.hasNext()){
+            User nextUser = userIterator.next();
+            if (nextUser.getUserNumber() == id){
+                userIterator.remove();
+                break;
             }
         }
+
     }
 
-    public static void changeLogin() { ///need ask
+    public static void changeLogin() { ///need ask - iterator
         Scanner scan = new Scanner(System.in);
         System.out.println("Please write a new login");
         String newLogin = scan.nextLine();
@@ -116,7 +117,7 @@ public class MainUtils {
         }
     }
 
-    public static void changePassword() { ///need ask
+    public static void changePassword() { ///need ask - iterator edit
         Scanner scan = new Scanner(System.in);
         System.out.println("Please write a new Password");
         String newPassword = scan.nextLine();
